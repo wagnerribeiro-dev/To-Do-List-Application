@@ -1,44 +1,66 @@
 <template>
   <div>
-    <TaskForm @submit="addTask" />
-    <div v-if="tasks.length">
-      <TaskItem
-        v-for="task in tasks"
-        :key="task.id"
-        :task="task"
-        @edit="editTask"
-        @remove="removeTask"
-      />
+    <h1>Tasks</h1>
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        {{ task.title }}
+        <button @click="editTask(task.id)">Edit</button>
+        <button @click="removeTask(task.id)">Delete</button>
+      </li>
+    </ul>
+    <button @click="showAddTaskForm = true">Add New Task</button>
+    <div v-if="showAddTaskForm">
+      <h2>Add New Task</h2>
+      <input v-model="newTaskTitle" placeholder="Task title" />
+      <button @click="addTask">Add</button>
     </div>
-    <div v-else>No tasks available</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import TaskItem from '@/components/TaskItem.vue';
-import TaskForm from '@/components/TaskForm.vue';
 
 export default defineComponent({
-  components: { TaskItem, TaskForm },
+  name: 'Tasks',
   setup() {
-    const tasks = ref<{ id: string; title: string }[]>([]);
+    const tasks = ref([
+      { id: 1, title: 'Task 1' },
+      { id: 2, title: 'Task 2' }
+    ]);
 
-    function addTask(title: string) {
-      // Call API to add task
-      // tasks.value.push({ id: newId, title });
+    const showAddTaskForm = ref(false);
+    const newTaskTitle = ref('');
+
+    function addTask() {
+      if (newTaskTitle.value.trim()) {
+        tasks.value.push({
+          id: tasks.value.length + 1,
+          title: newTaskTitle.value
+        });
+        newTaskTitle.value = '';
+        showAddTaskForm.value = false;
+      }
     }
 
-    function editTask(id: string) {
-      // Handle task edit
+    function editTask(taskId: number) {
+      console.log('Edit task:', taskId);
     }
 
-    function removeTask(id: string) {
-      // Call API to remove task
-      // tasks.value = tasks.value.filter(task => task.id !== id);
+    function removeTask(taskId: number) {
+      tasks.value = tasks.value.filter(task => task.id !== taskId);
     }
 
-    return { tasks, addTask, editTask, removeTask };
+    return {
+      tasks,
+      showAddTaskForm,
+      newTaskTitle,
+      addTask,
+      editTask,
+      removeTask
+    };
   }
 });
 </script>
+
+<style scoped>
+</style>

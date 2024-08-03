@@ -3,8 +3,8 @@ import Home from './views/Home.vue';
 import Tasks from './views/Tasks.vue';
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/tasks', component: Tasks }
+  { path: '/', component: Home, name: 'Home' },
+  { path: '/tasks', component: Tasks, name: 'Tasks' }
 ];
 
 const router = createRouter({
@@ -13,3 +13,5 @@ const router = createRouter({
 });
 
 export default router;
+
+
