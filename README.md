@@ -123,6 +123,4 @@ Este projeto é licenciado sob a [Licença MIT](LICENSE).
 
 Se tiver dúvidas ou precisar de ajuda, entre em contato através de wgr.leao10@gmail.com ou https://www.linkedin.com/in/wagnergoncalvesribeiro.
 
----
 
-Sinta-se à vontade para ajustar qualquer seção conforme necessário para atender melhor às necessidades do seu projeto.
