@@ -1,11 +1,9 @@
+// vue.config.js
 module.exports = {
-  transpileDependencies: ['some-dependency']
-}
+  // Suas opções de configuração aqui
+  devServer: {
+    proxy: 'http://localhost:3000'
+  }
+};
 
-const { defineConfig } = require('@vue/cli-service')
-
-module.exports = defineConfig({
-  transpileDependencies: true,
- 
-})
 
